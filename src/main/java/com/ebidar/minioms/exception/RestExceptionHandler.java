@@ -8,20 +8,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.sql.Timestamp;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 @RestControllerAdvice
 @RequiredArgsConstructor
-public class RestExceptionHandler {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     private final MessageSource messageSource;
 
     private <E extends BaseException> ResponseEntity<Object> buildResponseEntity(E exception, HttpStatus status) {
         ApiError apiError = new ApiError();
+        Locale locale = new Locale("fa", "PERSIAN");
+        String message = messageSource.getMessage(exception.getMessage(), exception.getParameters(), locale);
         apiError.setStatus(status)
-                .setMessage(messageSource.getMessage(exception.getMessage(), exception.getParameters(), Locale.ENGLISH))
-                .setParameters(exception.getParameters());
+                .setMessage(message)
+                .setParameters(exception.getParameters())
+                .setDateTime(new Timestamp(new GregorianCalendar().getTime().getTime()));
         return new ResponseEntity<>(apiError, status);
     }
 

@@ -49,7 +49,7 @@ public class ClientServiceImpl implements ClientService {
     @Transactional(readOnly = true)
     public Client findEntityByExchangeCode(String exchangeCode) {
         return findOptionalEntityByExchangeCode(exchangeCode)
-                .orElseThrow(() -> new NotFoundException("{err.client.exchange-code.not-found}"));
+                .orElseThrow(() -> new NotFoundException("err.client.exchange-code.not-found"));
     }
 
     @Override

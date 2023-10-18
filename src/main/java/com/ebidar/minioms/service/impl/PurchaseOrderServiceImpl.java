@@ -69,7 +69,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
     @Transactional(readOnly = true)
     public PurchaseOrder findEntityByClientExchangeCodeAndStockCodeAndStatus(String clientExchangeCode, String stockCode, PurchaseStatus status) {
         return findOptionalEntityByClientExchangeCodeAndStockCodeAndStatus(clientExchangeCode, stockCode, status)
-                .orElseThrow(() -> new NotFoundException("{err.purchase-order.not-found}"));
+                .orElseThrow(() -> new NotFoundException("err.purchase-order.not-found"));
     }
 
     @Override

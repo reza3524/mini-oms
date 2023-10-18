@@ -48,7 +48,7 @@ public class StockServiceImpl implements StockService {
     @Transactional(readOnly = true)
     public Stock findEntityByCode(String code) {
         return findOptionalEntityByCode(code)
-                .orElseThrow(() -> new NotFoundException("{err.stock.code.not-found}"));
+                .orElseThrow(() -> new NotFoundException("err.stock.code.not-found"));
     }
 
     @Override

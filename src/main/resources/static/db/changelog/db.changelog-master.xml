@@ -9,4 +9,6 @@
      <include file="changes/c_tbl_stock.sql" relativeToChangelogFile="true"/>
      <include file="changes/c_tbl_purchase-order.sql" relativeToChangelogFile="true"/>
 
+
+     <include file="changes/project2/c_tbl_credit.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

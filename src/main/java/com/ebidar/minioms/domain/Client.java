@@ -1,12 +1,12 @@
 package com.ebidar.minioms.domain;
 
 import com.ebidar.minioms.base.BaseEntity;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serial;
 
 @Getter

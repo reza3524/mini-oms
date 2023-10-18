@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.springframework.http.HttpStatus;
 
+import java.sql.Timestamp;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -15,6 +17,7 @@ public class ApiError {
 
     private HttpStatus status;
     private String message;
+    private Timestamp dateTime;
     @JsonIgnore
     private Object[] parameters;
 }

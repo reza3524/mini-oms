@@ -21,6 +21,6 @@ public class BaseEntity<I extends Serializable> implements Serializable {
     private I id;
 
     @Version
-    @Column(name = "version", nullable = false)
+    @Column(name = "n_version", nullable = false)
     private Integer version;
 }
