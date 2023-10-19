@@ -6,7 +6,7 @@ create table tbl_credit
     id        NUMERIC(20)  not null,
     user_id   VARCHAR(255) not null
         constraint user_id unique,
-    amount    NUMERIC(19, 2),
+    amount    NUMERIC(19),
     n_version NUMERIC(10)  NOT NULL,
     constraint pk_tbl_credit
         primary key (id)

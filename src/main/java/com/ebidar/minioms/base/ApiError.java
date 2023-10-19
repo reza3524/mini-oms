@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 @Accessors(chain = true)
 public class ApiError {
 
+    private String field;
     private HttpStatus status;
     private String message;
     private Timestamp dateTime;

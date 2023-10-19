@@ -4,3 +4,6 @@ spring:
   h2:
     console:
       enabled: true
+
+project:
+  count-minute-restriction: 100

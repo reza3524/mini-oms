@@ -25,5 +25,5 @@ public class Credit extends BaseEntity<Long> {
     private String userId;
 
     @Column(name = "amount")
-    private BigDecimal amount;
+    private Integer amount;
 }

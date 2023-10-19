@@ -12,7 +12,11 @@ public interface BaseMapper<
 
     D toDto(E entity);
 
+    List<D> toDto(List<E> entity);
+
     D toDto(T transfer);
 
     T toTransfer(D dto);
+
+    List<T> toTransfer(List<D> dto);
 }

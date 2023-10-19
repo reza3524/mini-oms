@@ -21,7 +21,7 @@ public class CreditDto extends BaseDto<Long> {
     @NotBlank(message = "{err.project2.credit.user-id.null}")
     private String userId;
 
-    private BigDecimal amount;
+    private Integer amount;
 
     @Getter
     @Setter
@@ -33,6 +33,6 @@ public class CreditDto extends BaseDto<Long> {
 
         @NotBlank(message = "{err.project2.credit.user-id.null}")
         private String userId;
-        private BigDecimal amount;
+        private Integer amount;
     }
 }

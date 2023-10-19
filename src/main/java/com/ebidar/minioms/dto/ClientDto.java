@@ -2,7 +2,6 @@ package com.ebidar.minioms.dto;
 
 import com.ebidar.minioms.base.BaseDto;
 import com.ebidar.minioms.base.BaseTransfer;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +13,7 @@ import java.io.Serial;
 @Setter
 @Accessors(chain = true)
 public class ClientDto extends BaseDto<Long> {
-    
+
     @Serial
     private static final long serialVersionUID = 6327365413041870003L;
 
@@ -24,7 +23,7 @@ public class ClientDto extends BaseDto<Long> {
     private String firstname;
 
     private String lastname;
-    
+
     @Getter
     @Setter
     @Accessors(chain = true)

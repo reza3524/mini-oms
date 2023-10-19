@@ -11,4 +11,7 @@
 
 
      <include file="changes/project2/c_tbl_credit.sql" relativeToChangelogFile="true"/>
+     <include file="changes/project2/c_tbl_order.sql" relativeToChangelogFile="true"/>
+     <include file="changes/project2/c_tbl_portfolio.sql" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

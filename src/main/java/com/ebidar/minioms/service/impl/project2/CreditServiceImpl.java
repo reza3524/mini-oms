@@ -1,17 +1,24 @@
 package com.ebidar.minioms.service.impl.project2;
 
+import com.ebidar.minioms.domain.project2.Credit;
 import com.ebidar.minioms.dto.project2.CreditDto;
+import com.ebidar.minioms.enumeration.PurchaseType;
 import com.ebidar.minioms.exception.NotFoundException;
 import com.ebidar.minioms.mapper.project2.CreditMapper;
 import com.ebidar.minioms.repository.project2.CreditRepository;
 import com.ebidar.minioms.service.facade.project2.CreditService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CreditServiceImpl implements CreditService {
+
+    private static final Object lock = new Object();
 
     private final CreditRepository repository;
     private final CreditMapper mapper;
@@ -24,8 +31,34 @@ public class CreditServiceImpl implements CreditService {
 
     @Override
     @Transactional(readOnly = true)
+    public Optional<Credit> findOptionalEntityByUserId(String userId) {
+        return repository.findByUserId(userId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Credit findEntityByUserId(String userId) {
+        return findOptionalEntityByUserId(userId)
+                .orElseThrow(() -> new NotFoundException("err.project2.credit.not-found"));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public CreditDto findByUserId(String userId) {
-        return mapper.toDto(repository.findByUserId(userId)
-                .orElseThrow(() -> new NotFoundException("err.project2.credit.not-found")));
+        return mapper.toDto(findEntityByUserId(userId));
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public CreditDto updateAmount(CreditDto credit, PurchaseType type) {
+        synchronized (lock) {
+            Credit existEntity = findEntityByUserId(credit.getUserId());
+            if (type.equals(PurchaseType.BUY)) {
+                existEntity.setAmount(existEntity.getAmount() - credit.getAmount());
+            } else {
+                existEntity.setAmount(existEntity.getAmount() + credit.getAmount());
+            }
+            return mapper.toDto(repository.save(existEntity));
+        }
     }
 }
